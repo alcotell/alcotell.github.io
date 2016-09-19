@@ -76,7 +76,7 @@
         var database = firebase.database();
         var starCountRef = firebase.database().ref('Authorize');
         var kaamKa = undefined;
-        starCountRef.on('value', function(snapshot) {
+        starCountRef.once('value', function(snapshot) {
             var allResults = snapshot.val();
             for(keyValue in allResults) {
                 if(allResults[keyValue] === document.getElementById('emailID').value) {
@@ -88,7 +88,7 @@
             }
             if(kaamKa) {
                 var starCountRef1 = firebase.database().ref('Details/' + kaamKa);
-                starCountRef1.on('value', function(snapshot) {
+                starCountRef1.once('value', function(snapshot) {
                     var allResults1 = snapshot.val();
                     console.log(allResults1);
                 });
