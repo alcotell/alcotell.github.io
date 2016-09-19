@@ -10,6 +10,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
+      <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
     <section class="page-header">
       <h1 class="project-name">Alcotell.GitHub.io</h1>
       <h2 class="project-tagline">Daarubaaz App</h2>
@@ -47,7 +50,51 @@
       </footer>
 
     </section>
+    <form onsubmit="meraFunction()">
+        <input type="text" placeholder="Email" id="emailID" />
+        <input type="password" placeholder="Password" id="pass" />
+        <input type="submit" value="submit" />
+    </form>
 
-  
+
+
+  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAe3CjDwV9qxXZVmlPpAym-epdQVLNAZD4",
+      authDomain: "aloctell.firebaseapp.com",
+      databaseURL: "https://aloctell.firebaseio.com",
+      storageBucket: "",
+      messagingSenderId: "810891375354"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script>
+    var meraFunction = function() {
+        event.preventDefault();
+        var database = firebase.database();
+        var starCountRef = firebase.database().ref('Authorize');
+        var kaamKa = undefined;
+        starCountRef.on('value', function(snapshot) {
+            var allResults = snapshot.val();
+            for(keyValue in allResults) {
+                if(allResults[keyValue] === document.getElementById('emailID').value) {
+                    kaamKa = keyValue;
+                }
+                else {
+
+                }
+            }
+            if(kaamKa) {
+                var starCountRef1 = firebase.database().ref('Details/' + kaamKa);
+                starCountRef1.on('value', function(snapshot) {
+                    var allResults1 = snapshot.val();
+                    console.log(allResults1);
+                });
+            }
+        });
+    }
+  </script>
   </body>
 </html>
