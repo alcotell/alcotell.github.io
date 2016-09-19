@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Alcotell.GitHub.io by alcoadfasdftell</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,11 +8,11 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-      <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
 
     <form onsubmit="meraFunction()">
         <input type="text" placeholder="Email" id="emailID" />
@@ -34,30 +34,31 @@
             <option value="Female">Female</option>
         </select>
         <select id="country">
-	<option value="AFG">Afghanistan</option>
-	<option value="ALA">Åland Islands</option>
-	<option value="ALB">Albania</option>
-	<option value="DZA">Algeria</option>
+            <option value="AFG">Afghanistan</option>
+            <option value="ALA">Åland Islands</option>
+            <option value="ALB">Albania</option>
+            <option value="DZA">Algeria</option>
 
-</select>
+        </select>
+        <input type="file" name="pic" id="imageBlob" accept="image/*">
         <input type="submit" value="SAVE" />
     </form>
 
 
 
-  <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-  <script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script>
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyAe3CjDwV9qxXZVmlPpAym-epdQVLNAZD4",
-      authDomain: "aloctell.firebaseapp.com",
-      databaseURL: "https://aloctell.firebaseio.com",
-      storageBucket: "",
-      messagingSenderId: "810891375354"
+        apiKey: "AIzaSyAe3CjDwV9qxXZVmlPpAym-epdQVLNAZD4",
+        authDomain: "aloctell.firebaseapp.com",
+        databaseURL: "https://aloctell.firebaseio.com",
+        storageBucket: "gs://aloctell.appspot.com",
+        messagingSenderId: "810891375354"
     };
     firebase.initializeApp(config);
-  </script>
-  <script>
+    </script>
+    <script>
     var meraFunction = function() {
         event.preventDefault();
         var database = firebase.database();
@@ -126,7 +127,25 @@
             Gender: document.getElementById('gender').value,
             Country: document.getElementById('country').value,
         });
+        // Create a root reference
+        var storageRef = firebase.storage().ref();
+
+        // Create a reference to 'mountains.jpg'
+        var mountainsRef = storageRef.child('mountains.png');
+
+        // Create a reference to 'images/mountains.jpg'
+
+        var file = document.getElementById("imageBlob").files[0] // use the Blob or File API
+        console.log(document.getElementById("imageBlob").value);
+        var mountainImagesRef = storageRef.child(newKey + document.getElementById("imageBlob").value.split(".")[1]);
+
+        // While the file names are the same, the references point to different files
+        mountainsRef.name === mountainImagesRef.name            // true
+        mountainsRef.fullPath === mountainImagesRef.fullPath    // false
+        mountainImagesRef.put(file).then(function(snapshot) {
+            console.log('Uploaded a blob or file!');
+        });
     }
-  </script>
-  </body>
+    </script>
+</body>
 </html>
