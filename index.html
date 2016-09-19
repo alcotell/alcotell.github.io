@@ -53,7 +53,13 @@
     <form onsubmit="meraFunction()">
         <input type="text" placeholder="Email" id="emailID" />
         <input type="password" placeholder="Password" id="pass" />
-        <input type="submit" value="submit" />
+        <input type="submit" value="SIGN IN" />
+    </form>
+
+    <form onsubmit="meraFunction2()">
+        <input type="text" placeholder="Email" id="emailID2" />
+        <input type="password" placeholder="Password" id="pass2" />
+        <input type="submit" value="SIGN UP" />
     </form>
 
 
@@ -90,7 +96,42 @@
                 var starCountRef1 = firebase.database().ref('Details/' + kaamKa);
                 starCountRef1.once('value', function(snapshot) {
                     var allResults1 = snapshot.val();
-                    console.log(allResults1);
+                    if(allResults1.pass === document.getElementById('pass').value) {
+                        console.log("SUCCESS");
+                    }
+                    else {
+                        console.log("Failure");
+                    }
+                });
+            }
+        });
+    }
+    var meraFunction2 = function() {
+        event.preventDefault();
+        var database = firebase.database();
+        var starCountRef = firebase.database().ref('Authorize');
+        var alreadyExists = false;
+        starCountRef.once('value', function(snapshot) {
+            var allResults = snapshot.val();
+            for(keyValue in allResults) {
+                if(allResults[keyValue] === document.getElementById('emailID2').value) {
+                    alreadyExists = true;
+                }
+                else {
+
+                }
+            }
+            if(alreadyExists) {
+                console.log("USER ALREADY EXISTS");
+            }
+            else {
+                var newKey = firebase.database().ref().child('Authorize').push().key;
+                var updates = {};
+                updates['/Authorize/' + newKey] = document.getElementById('emailID2').value;
+                firebase.database().ref().update(updates);
+
+                firebase.database().ref('Details/' + newKey).set({
+                    pass: document.getElementById('pass2').value,
                 });
             }
         });
