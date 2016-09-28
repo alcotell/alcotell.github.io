@@ -2,239 +2,145 @@
 <html lang="en-us">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets\stylesheet.css">
     <style>
-    body {
-    background: #435159;
-    font-size: 22px;
-    font-family: 'Droid Sans', sans-serif;
-}
-
-.form-container {
-    background: #24313C;
-    color: #95A8A6;
-    /*width: 85%;*/
-    margin: 50px auto;
-    padding: 40px 50px;
-}
-
-.profile-form {
-    color: #95A8A6;
-}
-
-.left {
-    float: left;
-     /*width: 48%;*/
-}
-
-.right {
-    float: right;
-    width: 48%;
-}
-
-input[type=text],
-input[type=email],
-textarea {
-    background: #24313C;
-    color: white;
-    border: 2px solid #95A8A6;
-    font-size: 22px;
-    padding: 8px 10px;
-    float: left;
-    width: 80%;
-    margin: 15px 10px;
-}
-
-textarea {
-    width: 95.5%;
-    margin: 0 0 20px;
-}
-
-input[type=text]:focus,
-input[type=email]:focus,
-textarea:focus {
-    outline: none;
-    border-color: #1AB188;
-    border: 2px solid #1ab188;
-}
-
-
-h1 {
-    font-weight: normal;
-	color: white;
-	text-align: center;
-    margin-top: 0;
-}
-
-h3 {
-    color: white;
-    font-weight: normal;
-}
-
-.list-basic {
-    margin: 15px -10px 0px;
-    overflow: auto;
-}
-
-.inline-title {
-    display: inline-block;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-input[type="radio"] + label span {
-    display: inline-block;
-    width: 15px;
-    height: 15px;
-    margin: -3px 7px 0 0;
-    vertical-align: middle;
-    cursor: pointer;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-}
-
-input[type="radio"] + label span {
-    background-color: transparent;
-    border: 2px solid #1AB188;
-}
-
-input[type="radio"] + label span::before {
-    display: block;
-    position: relative;
-    content: '';
-    border-radius: 100%;
-    height: 7px;
-    width: 7px;
-    top: 4px;
-    left: 0px;
-    margin: auto;
-    transition: background 0.25s linear;
-    -webkit-transition: background 0.25s linear;
-}
-
-input[type="radio"]:checked + label span::before {
-  background-color: #1AB188;
-}
-
-input[type="radio"] + label span,
-input[type="radio"]:checked + label span {
-  -webkit-transition: background-color 0.4s linear;
-  -o-transition: background-color 0.4s linear;
-  -moz-transition: background-color 0.4s linear;
-  transition: background-color 0.4s linear;
-}
-
-.continent-option {
-    display: inline-block;
-    margin-bottom: 15px;
-    margin-right: 30px;
-}
-
-.gender-option {
-    display: inline-block;
-    margin: 0 28px;
-}
-
-small {
-    color: #95a8a6;
-    display: inline-block;
-    font-size: 15px;
-}
-
-.btn-submit {
-    background: #1AB188;
-    color: white;
-    font-size: 1.6em;
-    border-color: transparent;
-    width: 100%;
-    padding: 6px;
-    letter-spacing: 3px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-.btn-submit:hover,
-.btn-submit:focus {
-    background: #179f7a;
-}
-
-.input-item {
-    overflow: auto;
-}
-
-.input-label {
-    display: inline-block;
-    color: #1AB188;
-    width: 33%;
-    margin: 15px 0;
-}
-
-.user-input {
-    display: inline-block;
-    margin: 15px 0;
-}
-
-.text-left {
-    text-align: left;
-}
-
-.message {
-    text-align: center;
-}
-
-
-
     </style>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <div class="form-container">
-    <div id="inputs">
-    </div>
-    <form class="profile-form" id="form">
-        <h1>Create Your Profile</h1>
-        <div id="warnings"></div>
-        <div class="left">
-            <div class="list-basic">
-                <input type="text" name="firstName" placeholder="First Name" required />
-                <input type="text" name="lastName" placeholder="Last Name" required>
-                <input type="text" name="phone" placeholder="Phone" required>
-                <input type="email" name="email" placeholder="Email" required>
+    <div class="form">
+        <div class="tab-content">
+            <div id="signup">
+                <h1>Edit your Profile</h1>
+
+                <form action="/index1.html" method="post">
+
+                    <div class="top-row">
+                        <div class="field-wrap">
+                            <label>
+                                Name<span class="req">*</span>
+                            </label>
+                            <input type="text" required autocomplete="off" />
+                        </div>
+
+                        <div class="field-wrap">
+                            <label>
+                                Last Name<span class="req">*</span>
+                            </label>
+                            <input type="text"required autocomplete="off"/>
+                        </div>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Set A Password<span class="req">*</span>
+                        </label>
+                        <input type="password"required autocomplete="off"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <input type="radio" class="myRadioClass maleClass" value="Male" name="Gender" checked><label onClick="changeGenderFunction()" class="radioClass myRadioClass"><span></span></label></input>
+                        <input type="radio" class="myRadioClass femaleClass " value="Female" name="Gender"><label onClick="changeGenderFunction()" class="radioClass myRadioClass"><span></span></label></input>
+                    </div>
+                    <div class="field-wrap">
+                        <button type="submit" class="button button-block"/>Get Started</button>
+                    </div>
+                </form>
+
             </div>
-            <div class="list-continent">
-                <h3>Where were you born?</h3>
-                <div class="continent-option">
-                    <input type="radio" id="c0" name="continent" value="North America">
-                    <label for="c0"><span></span>North America</label>
-                </div>
-                <div class="continent-option">
-                    <input type="radio" id="c1" name="continent" value="South America">
-                    <label for="c1"><span></span>South America</label>
-                </div>
-                <div class="continent-option">
-                    <input type="radio" id="c2" name="continent" value="Europe">
-                    <label for="c2"><span></span>Europe</label>
-                </div>
-                <div class="continent-option">
-                    <input type="radio" id="c3" name="continent" value="Asia">
-                    <label for="c3"><span></span>Asia</label>
-                </div>
-                <div class="continent-option">
-                    <input type="radio" id="c4" name="continent" value="Africa">
-                    <label for="c4"><span></span>Africa</label>
-                </div>
-                <div class="continent-option">
-                    <input type="radio" id="c5" name="continent" value="Antartica">
-                    <label for="c5"><span></span>Antartica</label>
-                </div>
+
+            <div id="login">
+                <h1>Welcome Back!</h1>
+
+                <form action="/" method="post">
+
+                    <div class="field-wrap">
+                        <label>
+                            Email Address<span class="req">*</span>
+                        </label>
+                        <input type="email"required autocomplete="off"/>
+                    </div>
+
+                    <div class="field-wrap">
+                        <label>
+                            Password<span class="req">*</span>
+                        </label>
+                        <input type="password"required autocomplete="off"/>
+                    </div>
+
+                    <p class="forgot"><a href="#">Forgot Password?</a></p>
+
+                    <button class="button button-block"/>Log In</button>
+
+                </form>
+
             </div>
-        </div>
-    </form>
-    <button id="submit" class="btn-submit">SUBMIT</button>
-</div>
+
+        </div><!-- tab-content -->
+
+    </div> <!-- /form -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    var changeGenderFunction = function() {
+        var maleValue = document.getElementsByClassName("maleClass")[0];
+        var femaleValue = document.getElementsByClassName("femaleClass")[0];
+        if(maleValue.checked) {
+            console.log("in male uncheck");
+            maleValue.checked = false;
+            femaleValue.checked = true;
+        }
+        else {
+            console.log("in male chekc");
+            femaleValue.checked = false;
+            maleValue.checked = true;
+        }
+    }
+    $('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+        var $this = $(this),
+        label = $this.prev('label');
+
+        if (e.type === 'keyup') {
+            if ($this.val() === '') {
+                label.removeClass('active highlight');
+            } else {
+                label.addClass('active highlight');
+            }
+        } else if (e.type === 'blur') {
+            if( $this.val() === '' ) {
+                label.removeClass('active highlight');
+            } else {
+                label.removeClass('highlight');
+            }
+        } else if (e.type === 'focus') {
+
+            if( $this.val() === '' ) {
+                label.removeClass('highlight');
+            }
+            else if( $this.val() !== '' ) {
+                label.addClass('highlight');
+            }
+        }
+
+    });
+
+    $('.tab a').on('click', function (e) {
+
+        e.preventDefault();
+
+        $(this).parent().addClass('active');
+        $(this).parent().siblings().removeClass('active');
+
+        target = $(this).attr('href');
+
+        $('.tab-content > div').not(target).hide();
+
+        $(target).fadeIn(600);
+
+    });
+    </script>
 
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"a2d68a09c9a817072f1a5dc62","lid":"a556aa1a10"}) })</script>
 </body>
