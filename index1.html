@@ -41,6 +41,7 @@
                     </div>
 
                     <div class="field-wrap">
+                        <h2>GENDER</h2>
                         <input type="radio" class="myRadioClass maleClass" value="Male" name="Gender" checked><label onClick="changeGenderFunction()" class="radioClass myRadioClass"><span></span></label></input>
                         <input type="radio" class="myRadioClass femaleClass " value="Female" name="Gender"><label onClick="changeGenderFunction()" class="radioClass myRadioClass"><span></span></label></input>
                     </div>
@@ -87,12 +88,10 @@
         var maleValue = document.getElementsByClassName("maleClass")[0];
         var femaleValue = document.getElementsByClassName("femaleClass")[0];
         if(maleValue.checked) {
-            console.log("in male uncheck");
             maleValue.checked = false;
             femaleValue.checked = true;
         }
         else {
-            console.log("in male chekc");
             femaleValue.checked = false;
             maleValue.checked = true;
         }
