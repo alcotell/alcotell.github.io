@@ -1,151 +1,278 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-    <meta charset="UTF-8">
-    <title>Alcotell.GitHub.io by alcoadfasdftell</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <style>
+    body {
+    background: #435159;
+    font-size: 22px;
+    font-family: 'Droid Sans', sans-serif;
+}
+
+.form-container {
+    background: #24313C;
+    color: #95A8A6;
+    /*width: 85%;*/
+    margin: 50px auto;
+    padding: 40px 50px;
+}
+
+.profile-form {
+    color: #95A8A6;
+}
+
+.left {
+    float: left;
+     /*width: 48%;*/
+}
+
+.right {
+    float: right;
+    width: 48%;
+}
+
+input[type=text],
+input[type=email],
+textarea {
+    background: #24313C;
+    color: white;
+    border: 2px solid #95A8A6;
+    font-size: 22px;
+    padding: 8px 10px;
+    float: left;
+    width: 80%;
+    margin: 15px 10px;
+}
+
+textarea {
+    width: 95.5%;
+    margin: 0 0 20px;
+}
+
+input[type=text]:focus,
+input[type=email]:focus,
+textarea:focus {
+    outline: none;
+    border-color: #1AB188;
+    border: 2px solid #1ab188;
+}
+
+
+h1 {
+    font-weight: normal;
+	color: white;
+	text-align: center;
+    margin-top: 0;
+}
+
+h3 {
+    color: white;
+    font-weight: normal;
+}
+
+.list-basic {
+    margin: 15px -10px 0px;
+    overflow: auto;
+}
+
+.inline-title {
+    display: inline-block;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"] + label span {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: -3px 7px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+input[type="radio"] + label span {
+    background-color: transparent;
+    border: 2px solid #1AB188;
+}
+
+input[type="radio"] + label span::before {
+    display: block;
+    position: relative;
+    content: '';
+    border-radius: 100%;
+    height: 7px;
+    width: 7px;
+    top: 4px;
+    left: 0px;
+    margin: auto;
+    transition: background 0.25s linear;
+    -webkit-transition: background 0.25s linear;
+}
+
+input[type="radio"]:checked + label span::before {
+  background-color: #1AB188;
+}
+
+input[type="radio"] + label span,
+input[type="radio"]:checked + label span {
+  -webkit-transition: background-color 0.4s linear;
+  -o-transition: background-color 0.4s linear;
+  -moz-transition: background-color 0.4s linear;
+  transition: background-color 0.4s linear;
+}
+
+.continent-option {
+    display: inline-block;
+    margin-bottom: 15px;
+    margin-right: 30px;
+}
+
+.gender-option {
+    display: inline-block;
+    margin: 0 28px;
+}
+
+small {
+    color: #95a8a6;
+    display: inline-block;
+    font-size: 15px;
+}
+
+.btn-submit {
+    background: #1AB188;
+    color: white;
+    font-size: 1.6em;
+    border-color: transparent;
+    width: 100%;
+    padding: 6px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.btn-submit:hover,
+.btn-submit:focus {
+    background: #179f7a;
+}
+
+.input-item {
+    overflow: auto;
+}
+
+.input-label {
+    display: inline-block;
+    color: #1AB188;
+    width: 33%;
+    margin: 15px 0;
+}
+
+.user-input {
+    display: inline-block;
+    margin: 15px 0;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.message {
+    text-align: center;
+}
+
+
+
+    </style>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase-database.js"></script>
+    <div class="form-container">
+    <div id="inputs">
+    </div>
+    <form class="profile-form" id="form">
+        <h1>Create Your Profile</h1>
+        <div id="warnings"></div>
+        <div class="left">
+            <div class="list-basic">
+                <input type="text" name="firstName" placeholder="First Name" required />
+                <input type="text" name="lastName" placeholder="Last Name" required>
+                <input type="text" name="phone" placeholder="Phone" required>
+                <input type="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="list-continent">
+                <h3>Where were you born?</h3>
+                <div class="continent-option">
+                    <input type="radio" id="c0" name="continent" value="North America">
+                    <label for="c0"><span></span>North America</label>
+                </div>
+                <div class="continent-option">
+                    <input type="radio" id="c1" name="continent" value="South America">
+                    <label for="c1"><span></span>South America</label>
+                </div>
+                <div class="continent-option">
+                    <input type="radio" id="c2" name="continent" value="Europe">
+                    <label for="c2"><span></span>Europe</label>
+                </div>
+                <div class="continent-option">
+                    <input type="radio" id="c3" name="continent" value="Asia">
+                    <label for="c3"><span></span>Asia</label>
+                </div>
+                <div class="continent-option">
+                    <input type="radio" id="c4" name="continent" value="Africa">
+                    <label for="c4"><span></span>Africa</label>
+                </div>
+                <div class="continent-option">
+                    <input type="radio" id="c5" name="continent" value="Antartica">
+                    <label for="c5"><span></span>Antartica</label>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="right">
+            <div class="list-gender">
+                <h3 class="inline-title">Gender:</h3>
+                <div class="gender-option">
+                    <input type="radio" id="g0" name="gender" value="Male">
+                    <label for="g0"><span></span>Male</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" id="g1" name="gender" value="Female">
+                    <label for="g1"><span></span>Female</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" id="g2" name="gender" value="Other">
+                    <label for="g2"><span></span>Other</label>
+                </div>
+            </div>
+            <div class="list-gender">
+                <h3 class="inline-title">Pick a Color:</h3>
+                <div class="gender-option">
+                    <input type="radio" id="co0" name="color" value="Red">
+                    <label for="co0"><span></span>Red</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" id="co1" name="color" value="Green">
+                    <label for="co1"><span></span>Green</label>
+                </div>
+                <div class="gender-option">
+                    <input type="radio" id="co2" name="color" value="Blue">
+                    <label for="co2"><span></span>Blue</label>
+                </div>
+            </div>
+            <div class="list-bio">
+                <h3 class="inline-title">Short Bio</h3>
+                <small>(Maximum 140 characters)</small>
+                <textarea name="bio" placeholder="A little bit about yourself" rows="4"></textarea>
+            </div>
+        </div> -->
+    </form>
+    <button id="submit" class="btn-submit">SUBMIT</button>
+</div>
+
     <script type="text/javascript" src="//s3.amazonaws.com/downloads.mailchimp.com/js/signup-forms/popup/embed.js" data-dojo-config="usePlainJson: true, isDebug: false"></script><script type="text/javascript">require(["mojo/signup-forms/Loader"], function(L) { L.start({"baseUrl":"mc.us14.list-manage.com","uuid":"a2d68a09c9a817072f1a5dc62","lid":"a556aa1a10"}) })</script>
-    <form onsubmit="meraFunction()">
-        <input type="text" placeholder="Email" id="emailID" />
-        <input type="password" placeholder="Password" id="pass" />
-        <input type="submit" value="SIGN IN" />
-    </form>
-
-    <form onsubmit="meraFunction2()">
-        <input type="text" placeholder="Email" id="emailID2" />
-        <input type="password" placeholder="Password" id="pass2" />
-        <input type="submit" value="SIGN UP" />
-    </form>
-
-    <form onsubmit="meraFunction3()">
-        <input type="text" placeholder="Name" id="userName" />
-        <input type="date"  id="date"/>
-        <select id="gender">
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-        </select>
-        <select id="country">
-            <option value="AFG">Afghanistan</option>
-            <option value="ALA">Åland Islands</option>
-            <option value="ALB">Albania</option>
-            <option value="DZA">Algeria</option>
-
-        </select>
-        <input type="file" name="pic" id="imageBlob" accept="image/*">
-        <input type="submit" value="SAVE" />
-    </form>
-
-
-
-    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
-    <script>
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyAe3CjDwV9qxXZVmlPpAym-epdQVLNAZD4",
-        authDomain: "aloctell.firebaseapp.com",
-        databaseURL: "https://aloctell.firebaseio.com",
-        storageBucket: "gs://aloctell.appspot.com",
-        messagingSenderId: "810891375354"
-    };
-    firebase.initializeApp(config);
-    </script>
-    <script>
-    var meraFunction = function() {
-        event.preventDefault();
-        var database = firebase.database();
-        var starCountRef = firebase.database().ref('Authorize');
-        var kaamKa = undefined;
-        starCountRef.once('value', function(snapshot) {
-            var allResults = snapshot.val();
-            for(keyValue in allResults) {
-                if(allResults[keyValue] === document.getElementById('emailID').value) {
-                    kaamKa = keyValue;
-                }
-                else {
-
-                }
-            }
-            if(kaamKa) {
-                var starCountRef1 = firebase.database().ref('Details/' + kaamKa);
-                starCountRef1.once('value', function(snapshot) {
-                    var allResults1 = snapshot.val();
-                    if(allResults1.pass === document.getElementById('pass').value) {
-                        console.log("SUCCESS");
-                    }
-                    else {
-                        console.log("Failure");
-                    }
-                });
-            }
-        });
-    }
-    var meraFunction2 = function() {
-        event.preventDefault();
-        var database = firebase.database();
-        var starCountRef = firebase.database().ref('Authorize');
-        var alreadyExists = false;
-        starCountRef.once('value', function(snapshot) {
-            var allResults = snapshot.val();
-            for(keyValue in allResults) {
-                if(allResults[keyValue] === document.getElementById('emailID2').value) {
-                    alreadyExists = true;
-                }
-                else {
-
-                }
-            }
-            if(alreadyExists) {
-                console.log("USER ALREADY EXISTS");
-            }
-            else {
-                newKey = firebase.database().ref().child('Authorize').push().key;
-                var updates = {};
-                updates['/Authorize/' + newKey] = document.getElementById('emailID2').value;
-                firebase.database().ref().update(updates);
-
-                firebase.database().ref('Details/' + newKey).set({
-                    pass: document.getElementById('pass2').value,
-                });
-            }
-        });
-    }
-    var meraFunction3 = function() {
-        event.preventDefault();
-        var database = firebase.database();
-        firebase.database().ref('Details/' + newKey).set({
-            Name: document.getElementById('userName').value,
-            DOB: document.getElementById('date').value,
-            Gender: document.getElementById('gender').value,
-            Country: document.getElementById('country').value,
-        });
-        // Create a root reference
-        var storageRef = firebase.storage().ref();
-
-        // Create a reference to 'mountains.jpg'
-        var mountainsRef = storageRef.child('mountains.png');
-
-        // Create a reference to 'images/mountains.jpg'
-
-        var file = document.getElementById("imageBlob").files[0] // use the Blob or File API
-        console.log(document.getElementById("imageBlob").value);
-        var mountainImagesRef = storageRef.child(newKey + document.getElementById("imageBlob").value.split(".")[1]);
-
-        // While the file names are the same, the references point to different files
-        mountainsRef.name === mountainImagesRef.name            // true
-        mountainsRef.fullPath === mountainImagesRef.fullPath    // false
-        mountainImagesRef.put(file).then(function(snapshot) {
-            console.log('Uploaded a blob or file!');
-        });
-    }
-    </script>
 </body>
 </html>
