@@ -381,6 +381,8 @@ h1, h2, h3, h4, h5, h6 {font-weight:normal;margin:0 0 15px;}
     margin-top: 50px;
     font-size: 21px;}
 .edit-button-1:hover{background: #91B1B5; color: #fff; border: 3px solid #91B1B5;}
+.edit-button-1:active{outline: none;}
+.edit-button-1:focus{outline: none;}
 
 /*=========================
 	  slider close
@@ -417,7 +419,9 @@ width: 102px;}
 .contant-1-text h2{color:#8C9494; font-size: 35px; font-family: 'Raleway', sans-serif; font-weight: 400; padding-bottom: 25px}
 .contant-1-text p{color:rgba(0, 0, 0, 0.42); font-size: 16px; font-family: 'Raleway', sans-serif; font-weight: 400; margin:0px;}
 .edit-button-2{background: none; border: 3px solid #AAB2B5; border-radius: 30px; color: #636c6c;padding: 8px 50px;font-size: 21px;font-family: 'Raleway', sans-serif; font-weight: 700; margin-top: 50px}
-.edit-button-2:hover{background: none;border: 3px solid #AAB2B5; color: #636c6c;}
+.edit-button-2:hover{background: #AAB2B5;border: 3px solid #AAB2B5; color: white;}
+.edit-button-2:active{outline: none;}
+.edit-button-2:focus{outline: none;}
 #contant-1 .block-right{ text-align: center}
 #contant-1 .block-right-img{}
 #contant-1 .block-right-img img{}
@@ -477,7 +481,9 @@ width: 102px;}
 .contant-2-text h2{color:#8C9494; font-size: 35px; font-family: 'Raleway', sans-serif; font-weight: 400; padding-bottom: 25px}
 .contant-2-text p{color:#ABB2B4; font-size: 16px; font-family: 'Raleway', sans-serif; font-weight: 400; margin:0px;}
 .edit-button-3{background: none; border: 3px solid #AAB2B5; border-radius: 30px; color: #636c6c;padding: 8px 50px;font-size: 21px;font-family: 'Raleway', sans-serif; font-weight: 700; margin-top: 50px}
-.edit-button-3:hover{background: none;border: 3px solid #AAB2B5; color: #636c6c;}
+.edit-button-3:hover{background: #AAB2B5;border: 3px solid #AAB2B5; color: white;}
+.edit-button-3:active{outline: none;}
+.edit-button-3:focus{outline: none;}
 
 /*=========================
 	 Contant-2 close
