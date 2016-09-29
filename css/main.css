@@ -561,6 +561,7 @@ font-size: 20px;
 height: 42px;
 padding-top: 11px;
 width: 42px;}
+.social-icon a i:hover{background: #5d6461; color: white;}
 .support-link{padding-top: 70px;}
 .support-link ul{margin:0px; padding: 0px; list-style: none;}
 .support-link ul li{display: inline-block; padding: 0px 10px}
